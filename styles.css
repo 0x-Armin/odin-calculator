@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  padding-top: 20px;
+}
+
+.keypad {
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+}
