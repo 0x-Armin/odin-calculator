@@ -3,6 +3,8 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
+const divisionByZeroErr = "ERROR! Division by zero";
+
 function operate(operator, a, b) {
   a = Number(a), b = Number(b);
 
@@ -14,6 +16,7 @@ function operate(operator, a, b) {
     case "*":
       return multiply(a, b);
     case "/":
+      if (b === 0) return divisionByZeroErr;
       return divide(a, b);
     default:
       return "Invalid operator!";
@@ -56,6 +59,7 @@ function compute() {
 
   for (let i=0; i<operations.length; i+=2) {
     currValue = operate(operations[i], currValue, operations[i+1]);
+    if (currValue === divisionByZeroErr) break;
   }
 
   return currValue;
@@ -70,6 +74,7 @@ function getAnswer() {
     !Number.isInteger(ans)
   ) { displayStr = ans.toFixed(6) } 
   else if (Number.isInteger(ans)) { displayStr = ans.toString() }
+  else if (ans === divisionByZeroErr) {displayStr = ans; }
 
   updateDisplay();
 }
