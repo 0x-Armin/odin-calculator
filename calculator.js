@@ -5,6 +5,7 @@ const divide = (a, b) => a / b;
 
 const divisionByZeroErr = "ERROR! Division by zero";
 const tooManyDecimalsErr = "ERROR! Too many decimals";
+const incompleteInputErr = "ERROR! Incomplete input";
 
 function operate(operator, a, b) {
   a = Number(a), b = Number(b);
@@ -52,7 +53,7 @@ function compute() {
   operations.unshift("+");
 
   if (operations[operations.length-1] === "" ||  isNaN(operations[operations.length-1])) {
-    displayStr = "ERROR! Incomplete input!";
+    displayStr = incompleteInputErr;
     return;
   }
 
@@ -99,3 +100,12 @@ clearBtn.addEventListener('click', clear);
 // add decimal function
 const decimalRegex = /./g;
 countNumDecimal = (input) => (input.match(decimalRegex) || []).length;
+
+// add backspace function
+backspace = () => {
+  displayStr = displayStr.slice(0, -1);
+  updateDisplay();
+}
+
+const backspaceBtn = document.querySelector('#backspace');
+backspaceBtn.addEventListener('click', backspace)
