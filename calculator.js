@@ -17,3 +17,21 @@ function operate(operator, a, b) {
       return "Invalid operator!";
   }
 }
+
+function updateDisplay() {
+  let node = document.createTextNode(displayStr);
+  if (displayPanel.childNodes.length > 0) displayPanel.removeChild(displayPanel.lastChild);
+  displayPanel.appendChild(node);
+}
+
+function updateStr(e) {
+  displayStr = displayStr.concat(this.textContent);
+  console.log(displayStr);
+  updateDisplay();
+}
+
+let displayStr = "";
+const displayPanel = document.getElementById('display');
+
+const opBtns = Array.from(document.querySelectorAll('.number, .operator'));
+opBtns.forEach((opBtn) => opBtn.addEventListener('click', updateStr));
