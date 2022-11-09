@@ -4,6 +4,7 @@ const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
 const divisionByZeroErr = "ERROR! Division by zero";
+const tooManyDecimalsErr = "ERROR! Too many decimals";
 
 function operate(operator, a, b) {
   a = Number(a), b = Number(b);
@@ -42,7 +43,7 @@ function receiveInput() {
 let displayStr = "";
 const displayPanel = document.getElementById('display');
 
-const opBtns = Array.from(document.querySelectorAll('.number, .operator'));
+const opBtns = Array.from(document.querySelectorAll('.number, .operator, #decimal'));
 opBtns.forEach((opBtn) => opBtn.addEventListener('click', receiveInput));
 
 // compute user's input
@@ -58,6 +59,10 @@ function compute() {
   let currValue = 0;
 
   for (let i=0; i<operations.length; i+=2) {
+    if (countNumDecimal(operations[i+1]) > 3) {
+      currValue = tooManyDecimalsErr;
+      break;
+    }
     currValue = operate(operations[i], currValue, operations[i+1]);
     if (currValue === divisionByZeroErr) break;
   }
@@ -74,7 +79,7 @@ function getAnswer() {
     !Number.isInteger(ans)
   ) { displayStr = ans.toFixed(6) } 
   else if (Number.isInteger(ans)) { displayStr = ans.toString() }
-  else if (ans === divisionByZeroErr) {displayStr = ans; }
+  else if (ans === divisionByZeroErr || ans === tooManyDecimalsErr) {displayStr = ans; }
 
   updateDisplay();
 }
@@ -90,3 +95,7 @@ function clear() {
 
 const clearBtn = document.querySelector('#clear');
 clearBtn.addEventListener('click', clear);
+
+// add decimal function
+const decimalRegex = /./g;
+countNumDecimal = (input) => (input.match(decimalRegex) || []).length;
