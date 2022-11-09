@@ -24,9 +24,13 @@ function updateDisplay() {
   displayPanel.appendChild(node);
 }
 
-function updateStr(e) {
-  displayStr = displayStr.concat(this.textContent);
+function updateStr(inputStr) {
+  displayStr = displayStr.concat(inputStr);
   console.log(displayStr);
+}
+
+function receiveInput() {
+  updateStr(this.textContent);
   updateDisplay();
 }
 
@@ -34,4 +38,4 @@ let displayStr = "";
 const displayPanel = document.getElementById('display');
 
 const opBtns = Array.from(document.querySelectorAll('.number, .operator'));
-opBtns.forEach((opBtn) => opBtn.addEventListener('click', updateStr));
+opBtns.forEach((opBtn) => opBtn.addEventListener('click', receiveInput));
