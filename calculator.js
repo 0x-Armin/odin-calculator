@@ -46,6 +46,12 @@ opBtns.forEach((opBtn) => opBtn.addEventListener('click', receiveInput));
 function compute() {
   let operations = displayStr.split(/([-+*\/])/);
   operations.unshift("+");
+
+  if (operations[operations.length-1] === "" ||  isNaN(operations[operations.length-1])) {
+    displayStr = "ERROR! Incomplete input!";
+    return;
+  }
+
   let currValue = 0;
 
   for (let i=0; i<operations.length; i+=2) {
@@ -57,7 +63,14 @@ function compute() {
 
 function getAnswer() {
   let ans = compute();
-  displayStr = ans.toString();
+
+  if (
+    typeof ans === 'number' &&
+    !Number.isNaN(ans) &&
+    !Number.isInteger(ans)
+  ) { displayStr = ans.toFixed(6) } 
+  else if (Number.isInteger(ans)) { displayStr = ans.toString() }
+
   updateDisplay();
 }
 
