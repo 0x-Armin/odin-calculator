@@ -63,3 +63,12 @@ function getAnswer() {
 
 const equalsBtn = document.querySelector('#equals');
 equalsBtn.addEventListener('click', getAnswer);
+
+// clear display
+function clear() {
+  displayStr = "";
+  updateDisplay();
+}
+
+const clearBtn = document.querySelector('#clear');
+clearBtn.addEventListener('click', clear);
