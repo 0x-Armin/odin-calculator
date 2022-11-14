@@ -119,7 +119,9 @@ filterKBKey = (e) => {
   if (operators.includes(keyPressed) || operands.includes(keyPressed)) {
     console.log("yes received!");
     receiveInput(keyPressed);
-  }
+  } else if (keyPressed === 'Backspace') {
+    backspace();
+  } 
 }
 
 document.addEventListener('keydown', (e) => filterKBKey(e));
