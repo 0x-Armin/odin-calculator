@@ -123,6 +123,8 @@ filterKBKey = (e) => {
     backspace();
   } else if (keyPressed === '=') {
     getAnswer();
+  } else if (keyPressed === 'c') {
+    clear();
   }
 }
 
