@@ -36,8 +36,8 @@ function updateStr(inputStr) {
   displayStr = displayStr.concat(inputStr);
 }
 
-function receiveInput() {
-  updateStr(this.textContent);
+function receiveInput(inputStr) {
+  updateStr(this.textContent || this.key || inputStr);
   updateDisplay();
 }
 
@@ -108,4 +108,18 @@ backspace = () => {
 }
 
 const backspaceBtn = document.querySelector('#backspace');
-backspaceBtn.addEventListener('click', backspace)
+backspaceBtn.addEventListener('click', backspace);
+
+// add keyboard support
+filterKBKey = (e) => {
+  const keyPressed = e.key;
+  const operators = ['+', '-', '*', '/'];
+  const operands = ['0', '1', '2', '3', '4', '5',
+                    '6', '7', '8', '9', '.'];
+  if (operators.includes(keyPressed) || operands.includes(keyPressed)) {
+    console.log("yes received!");
+    receiveInput(keyPressed);
+  }
+}
+
+document.addEventListener('keydown', (e) => filterKBKey(e));
