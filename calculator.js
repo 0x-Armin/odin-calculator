@@ -117,7 +117,7 @@ filterKBKey = (e) => {
   const operands = ['0', '1', '2', '3', '4', '5',
                     '6', '7', '8', '9', '.'];
   if (operators.includes(keyPressed) || operands.includes(keyPressed)) {
-    console.log("yes received!");
+    if (keyPressed === '/') e.preventDefault();
     receiveInput(keyPressed);
   } else if (keyPressed === 'Backspace') {
     backspace();
