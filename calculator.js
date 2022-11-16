@@ -4,7 +4,7 @@ const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
 const divisionByZeroErr = "ERROR! Division by zero";
-const tooManyDecimalsErr = "ERROR! Too many decimals";
+const tooManyDecimalsErr = "ERROR! Decimal";
 const incompleteInputErr = "ERROR! Incomplete input";
 
 function operate(operator, a, b) {
@@ -60,7 +60,8 @@ function compute() {
   let currValue = 0;
 
   for (let i=0; i<operations.length; i+=2) {
-    if (countNumDecimal(operations[i+1]) > 3) {
+    console.log(countNumDecimal(operations[i+1]))
+    if (countNumDecimal(operations[i+1]) > 1) {
       currValue = tooManyDecimalsErr;
       break;
     }
@@ -98,7 +99,7 @@ const clearBtn = document.querySelector('#clear');
 clearBtn.addEventListener('click', clear);
 
 // add decimal function
-const decimalRegex = /./g;
+const decimalRegex = /\./g;
 countNumDecimal = (input) => (input.match(decimalRegex) || []).length;
 
 // add backspace function
