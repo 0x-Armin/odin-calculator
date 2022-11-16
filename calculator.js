@@ -27,7 +27,7 @@ function operate(operator, a, b) {
 
 // receive and display user's input
 function updateDisplay() {
-  let node = document.createTextNode(displayStr);
+  let node = document.createTextNode(displayStr.slice(-14));
   if (displayPanel.childNodes.length > 0) displayPanel.removeChild(displayPanel.lastChild);
   displayPanel.appendChild(node);
 }
@@ -42,7 +42,7 @@ function receiveInput(inputStr) {
 }
 
 let displayStr = "";
-const displayPanel = document.getElementById('display');
+const displayPanel = document.getElementById('display-panel');
 
 const opBtns = Array.from(document.querySelectorAll('.number, .operator, #decimal'));
 opBtns.forEach((opBtn) => opBtn.addEventListener('click', receiveInput));
