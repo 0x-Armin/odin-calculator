@@ -38,3 +38,14 @@ body {
 
   align-items: center;
 }
+
+.keypad-row {
+  width: 600px;
+  height: 100px;
+
+  margin-bottom: 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+}
