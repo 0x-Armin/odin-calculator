@@ -49,3 +49,20 @@ body {
 
   justify-content: space-between;
 }
+
+button {
+  width: 120px;
+
+  background-color: #FEC6D0;
+  border: 1px solid black;
+
+  font-size: 28px;
+}
+
+#backspace {
+  width: 280px;
+}
+
+#clear {
+  width: 280px;
+}
